@@ -1,0 +1,65 @@
+{% load static %}
+<!doctype html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'short_link/main.css' %}">
+</head>
+<body>
+    <div class="container-fluid mb-5" id="wrap">
+
+        <div class="row cols-2 menu align-items-center text-align-left">
+            <div class="col">
+                <p class = "title">ShortLink</p>
+            </div>
+            <div class="col">
+                <div class="container">
+                    <div class="row">
+                        <div class="col">
+                            <a href = "{% url 'home-page' %}">Главная</a>
+                        </div>
+                        <div class="col">
+                            <a href = "{% url 'contact-page' %}">О нас</a>
+                        </div>
+                        {% if not user.is_authenticated %}
+                            <div class="col">
+                                <a href = "{% url 'user' %}">Войти</a>
+                            </div>
+                            <div class="col">
+                                <a href = "{% url 'reg-page' %}">Регистрация</a>
+                            </div>
+                        {% else %}
+                            <div class="col">
+                                <a href = "{% url 'profile' %}">Кабинет</a>
+                            </div>
+                            <div class="col">
+                                <a href = "{% url 'short-page' %}">Ссылки</a>
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+             </div>
+         </div>
+    </div>
+    <div class="content">
+        <div class="block">
+            {% if messages %}
+                {% for mess in messages%}
+                    <div class="alert">{{ mess }}</div>
+                {% endfor %}
+            {% endif %}
+
+            {% block content %}
+            {% endblock %}
+        </div>
+    </div>
+    <footer>
+        <div class="foot"><p>Все права защищены@</p></div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,15 @@
+{% extends 'short_link/base.html' %}
+
+{% block title %}
+Главная
+{% endblock %}
+
+
+
+{% block content %}
+<div class = "info">
+    <h1>Сократ.им</h1>
+    <p>Быстро сократим любую длинную ссылку для вашего проекта</p>
+    <a href="{% url 'profile' %}" class="button">Кабинет пользователя</a>
+</div>
+{% endblock %}

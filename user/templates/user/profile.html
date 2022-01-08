@@ -1,0 +1,24 @@
+{% extends 'short_link/base.html' %}
+
+{% block title %}
+    Кабинет пользователя
+
+{% endblock %}
+
+
+{% block content %}
+<div class="container mt-5 mb-5 user-info">
+    <h1>Кабинет пользователя</h1>
+    <div class="mb-5">
+        <p> <b>@{{ user.username }}</b></p>
+        <p><b>Email:</b> {{ user.email }}</p>
+        <p><a href="{% url 'exit' %}">Выйти из кабинета</a></p>
+    </div>
+    <h2>Изменить данные про пользователя</h2>
+    <form method="post" class="form-register">
+        {% csrf_token %}
+        {{ updateUserForm.as_p }}
+        <button class="button" type="submit">Обновить</button>
+    </form>
+</div>
+{% endblock %}

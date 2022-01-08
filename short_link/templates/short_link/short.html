@@ -1,0 +1,26 @@
+{% extends 'short_link/base.html' %}
+
+
+{% block title %}
+Укорачиватель ссылок
+{% endblock %}
+
+
+
+{% block content %}
+<div class = "info-short mt-5 mb-5">
+    <h1>Создание ссылок</h1>
+    <form method="POST" class="form-register">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button class="button" type="submit">Создать ссылку</button>
+    </form>
+    <h2 class="mt-3">Доступные ссылки</h2>
+    <div class="scrol">
+        {% for lin in link %}
+            <p>Ссылка - <a href="{% url 'redirectoriginal' pk=lin.short %}">{{ lin.short_link }}</a></p>
+        {% endfor %}
+    </div>
+
+</div>
+{% endblock %}
