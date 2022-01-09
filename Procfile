@@ -1,1 +1,1 @@
-web: gunicorn diplom.wsgi
+web: gunicorn diplom.wsg
